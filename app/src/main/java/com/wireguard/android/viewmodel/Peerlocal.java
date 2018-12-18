@@ -125,7 +125,7 @@ public class Peerlocal  implements Parcelable {
         return 0;
     }
 
-    @Bindable
+
     public String getAllowedIps() {
         return allowedIps;
     }
@@ -134,33 +134,33 @@ public class Peerlocal  implements Parcelable {
         return new LinkedHashSet<>(Lists.of(Attribute.split(allowedIps)));
     }
 
-    @Bindable
+
     public String getEndpoint() {
         return endpoint;
     }
 
-    @Bindable
+
     public String getPersistentKeepalive() {
         return persistentKeepalive;
     }
 
-    @Bindable
+
     public String getPreSharedKey() {
         return preSharedKey;
     }
 
-    @Bindable
+
     public String getPublicKey() {
         return publicKey;
     }
 
-    @Bindable
+
     public boolean isAbleToExcludePrivateIps() {
         return allowedIpsState == AllowedIpsState.CONTAINS_IPV4_PUBLIC_NETWORKS
                 || allowedIpsState == AllowedIpsState.CONTAINS_IPV4_WILDCARD;
     }
 
-    @Bindable
+
     public boolean isExcludingPrivateIps() {
         return allowedIpsState == AllowedIpsState.CONTAINS_IPV4_PUBLIC_NETWORKS;
     }
