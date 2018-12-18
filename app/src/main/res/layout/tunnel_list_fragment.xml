@@ -101,12 +101,20 @@
                 app:fab_title="@string/create_empty"
                 app:srcCompat="@drawable/ic_action_edit_white" />
             <com.wireguard.android.widget.fab.LabeledFloatingActionButton
-                android:id="@+id/create_local"
+                android:id="@+id/create_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{fragment::onRequestCreatelocal}"
+                android:onClick="@{fragment::onRequestCreateUp}"
                 app:fabSize="mini"
-                app:fab_title="@string/create_local"
+                app:fab_title="@string/create_up"
+                app:srcCompat="@drawable/ic_action_edit_white" />
+            <com.wireguard.android.widget.fab.LabeledFloatingActionButton
+                android:id="@+id/create_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{fragment::onRequestCreateDown}"
+                app:fabSize="mini"
+                app:fab_title="@string/create_down"
                 app:srcCompat="@drawable/ic_action_edit_white" />
         </com.wireguard.android.widget.fab.FloatingActionsMenu>
 

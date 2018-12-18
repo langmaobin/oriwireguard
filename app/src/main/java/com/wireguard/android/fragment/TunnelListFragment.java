@@ -76,8 +76,10 @@ public class TunnelListFragment extends BaseFragment {
     private static final String TAG = "WireGuard/" + TunnelListFragment.class.getSimpleName();
 
     private final ActionModeListener actionModeListener = new ActionModeListener();
-    @Nullable private ActionMode actionMode;
-    @Nullable private TunnelListFragmentBinding binding;
+    @Nullable
+    private ActionMode actionMode;
+    @Nullable
+    private TunnelListFragmentBinding binding;
 
     public boolean collapseActionMenu() {
         if (binding != null && binding.createMenu.isExpanded()) {
@@ -285,39 +287,50 @@ public class TunnelListFragment extends BaseFragment {
     }
 
     //从本地封装数据
-    public void onRequestCreatelocal(@SuppressWarnings("unused") final View view) {
-        try{
+    TunnelManager manager = null;
+    Tunnel tunnel = null;
+
+    public void onRequestCreateUp(@SuppressWarnings("unused") final View view) {
+        try {
             //1:封装peer
-            Peerlocal peerlocal=new Peerlocal();
+            Peerlocal peerlocal = new Peerlocal();
             peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
             peerlocal.setEndpoint("123.206.67.247:51820");
             peerlocal.setAllowedIps("0.0.0.0/0");
             Collection<Peer> resolvedPeers = new ArrayList<>();
             resolvedPeers.add(peerlocal.resolve());
             //2:封装interface
-            Interfacelocal interfacelocal=new Interfacelocal();
+            Interfacelocal interfacelocal = new Interfacelocal();
             interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
             interfacelocal.setAddresses("10.100.1.4");
             interfacelocal.setDnsServers("8.8.8.8");
             interfacelocal.setListenPort("24");
-            Config newConfig=  new Config.Builder()
+            Config newConfig = new Config.Builder()
                     .setInterface(interfacelocal.resolve())
                     .addPeers(resolvedPeers)
                     .build();
-            final TunnelManager manager = Application.getTunnelManager();
-            Tunnel tunnel = new Tunnel(manager, newConfig,"VPN_BJ", Tunnel.State.DOWN);
+            manager = Application.getTunnelManager();
+            tunnel = new Tunnel(manager, newConfig, "VPN_BJ", Tunnel.State.DOWN);
             manager.setTunnelState(tunnel, Tunnel.State.UP);
 
 //        manager.create("VPN_BJ", newConfig)
 //                .whenComplete(this::onTunnelCreated);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
         if (binding != null)
             binding.createMenu.collapse();
     }
-    private Tunnel tunnel;
+
+    //从本地封装数据
+    public void onRequestCreateDown(@SuppressWarnings("unused") final View view) {
+
+        manager.setTunnelState(tunnel, Tunnel.State.DOWN);
+        if (binding != null)
+            binding.createMenu.collapse();
+    }
+
     private void onTunnelCreated(final Tunnel newTunnel, @Nullable final Throwable throwable) {
         final String message;
         if (throwable == null) {
@@ -335,6 +348,7 @@ public class TunnelListFragment extends BaseFragment {
             }
         }
     }
+
     private void onFinished() {
         // Hide the keyboard; it rarely goes away on its own.
         final Activity activity = getActivity();
@@ -455,7 +469,8 @@ public class TunnelListFragment extends BaseFragment {
     private final class ActionModeListener implements ActionMode.Callback {
         private final Collection<Integer> checkedItems = new HashSet<>();
 
-        @Nullable private Resources resources;
+        @Nullable
+        private Resources resources;
 
         public ArrayList<Integer> getCheckedItems() {
             return new ArrayList<>(checkedItems);
