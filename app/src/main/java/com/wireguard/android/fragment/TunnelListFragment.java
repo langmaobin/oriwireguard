@@ -290,6 +290,36 @@ public class TunnelListFragment extends BaseFragment {
     TunnelManager manager = null;
     Tunnel tunnel = null;
 
+    public void onRequestCreatelocal(@SuppressWarnings("unused") final View view) {
+        try {
+            //1:封装peer
+            Peerlocal peerlocal = new Peerlocal();
+            peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
+            peerlocal.setEndpoint("123.206.67.247:51820");
+            peerlocal.setAllowedIps("0.0.0.0/0");
+            Collection<Peer> resolvedPeers = new ArrayList<>();
+            resolvedPeers.add(peerlocal.resolve());
+            //2:封装interface
+            Interfacelocal interfacelocal = new Interfacelocal();
+            interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
+            interfacelocal.setAddresses("10.100.1.4");
+            interfacelocal.setDnsServers("8.8.8.8");
+            interfacelocal.setListenPort("24");
+            Config newConfig = new Config.Builder()
+                    .setInterface(interfacelocal.resolve())
+                    .addPeers(resolvedPeers)
+                    .build();
+            manager = Application.getTunnelManager();
+        manager.create("VPN_BJ", newConfig)
+                .whenComplete(this::onTunnelCreated);
+        } catch (Exception e) {
+
+        }
+
+        if (binding != null)
+            binding.createMenu.collapse();
+    }
+
     public void onRequestCreateUp(@SuppressWarnings("unused") final View view) {
         try {
             //1:封装peer
@@ -312,9 +342,6 @@ public class TunnelListFragment extends BaseFragment {
             manager = Application.getTunnelManager();
             tunnel = new Tunnel(manager, newConfig, "VPN_BJ", Tunnel.State.DOWN);
             manager.setTunnelState(tunnel, Tunnel.State.UP);
-
-//        manager.create("VPN_BJ", newConfig)
-//                .whenComplete(this::onTunnelCreated);
         } catch (Exception e) {
 
         }
