@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{fragment::onRequestCreatelocal}"
                 app:fabSize="mini"
-                app:fab_title="@string/create_empty"
+                app:fab_title="@string/create_local"
                 app:srcCompat="@drawable/ic_action_edit_white" />
         </com.wireguard.android.widget.fab.FloatingActionsMenu>
 

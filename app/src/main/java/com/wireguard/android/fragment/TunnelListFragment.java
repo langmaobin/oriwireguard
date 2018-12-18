@@ -8,6 +8,7 @@ package com.wireguard.android.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -27,6 +28,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -302,8 +305,8 @@ public class TunnelListFragment extends BaseFragment {
                     .addPeers(resolvedPeers)
                     .build();
             final TunnelManager manager = Application.getTunnelManager();
-//        manager.create(binding.getName(), newConfig)
-//                .whenComplete(this::onTunnelCreated);
+        manager.create("VPN_BJ", newConfig)
+                .whenComplete(this::onTunnelCreated);
         }catch (Exception e){
 
         }
@@ -311,6 +314,47 @@ public class TunnelListFragment extends BaseFragment {
         if (binding != null)
             binding.createMenu.collapse();
     }
+    private Tunnel tunnel;
+    private void onTunnelCreated(final Tunnel newTunnel, @Nullable final Throwable throwable) {
+        final String message;
+        if (throwable == null) {
+            tunnel = newTunnel;
+            message = getString(R.string.tunnel_create_success, tunnel.getName());
+            Log.d(TAG, message);
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            onFinished();
+        } else {
+            final String error = ExceptionLoggers.unwrapMessage(throwable);
+            message = getString(R.string.tunnel_create_error, error);
+            Log.e(TAG, message, throwable);
+            if (binding != null) {
+                Snackbar.make(binding.mainContainer, message, Snackbar.LENGTH_LONG).show();
+            }
+        }
+    }
+    private void onFinished() {
+        // Hide the keyboard; it rarely goes away on its own.
+        final Activity activity = getActivity();
+        if (activity == null) return;
+//        final View focusedView = activity.getCurrentFocus();
+//        if (focusedView != null) {
+//            final Object service = activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+//            final InputMethodManager inputManager = (InputMethodManager) service;
+//            if (inputManager != null)
+//                inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
+//                        InputMethodManager.HIDE_NOT_ALWAYS);
+//        }
+        // Tell the activity to finish itself or go back to the detail view.
+        getActivity().runOnUiThread(() -> {
+            // TODO(smaeul): Remove this hack when fixing the Config ViewModel
+            // The selected tunnel has to actually change, but we have to remember this one.
+            final Tunnel savedTunnel = tunnel;
+            if (savedTunnel == getSelectedTunnel())
+                setSelectedTunnel(null);
+            setSelectedTunnel(savedTunnel);
+        });
+    }
+
 
     @Override
     public void onSaveInstanceState(final Bundle outState) {
