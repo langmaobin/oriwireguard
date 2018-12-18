@@ -41,6 +41,14 @@ public class Tunnel extends BaseObservable implements Keyed<String> {
         this.state = state;
     }
 
+    public Tunnel(TunnelManager manager, Config config, String name, State state) {
+        this.manager = manager;
+        this.config = config;
+        this.name = name;
+        this.state = state;
+    }
+
+
     public static boolean isNameInvalid(final CharSequence name) {
         return !NAME_PATTERN.matcher(name).matches();
     }

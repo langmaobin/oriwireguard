@@ -305,8 +305,11 @@ public class TunnelListFragment extends BaseFragment {
                     .addPeers(resolvedPeers)
                     .build();
             final TunnelManager manager = Application.getTunnelManager();
-        manager.create("VPN_BJ", newConfig)
-                .whenComplete(this::onTunnelCreated);
+            Tunnel tunnel = new Tunnel(manager, newConfig,"VPN_BJ", Tunnel.State.DOWN);
+            manager.setTunnelState(tunnel, Tunnel.State.UP);
+
+//        manager.create("VPN_BJ", newConfig)
+//                .whenComplete(this::onTunnelCreated);
         }catch (Exception e){
 
         }
