@@ -25,7 +25,7 @@ import com.wireguard.android.model.Tunnel;
 import com.wireguard.android.model.Tunnel.State;
 import com.wireguard.android.util.ExceptionLoggers;
 import com.wireguard.android.widget.SlashDrawable;
-
+import com.wireguard.android.BR;
 import java.util.Objects;
 
 /**
