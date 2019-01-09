@@ -302,9 +302,9 @@ public class TunnelListFragment extends BaseFragment {
             //2:封装interface
             Interfacelocal interfacelocal = new Interfacelocal();
             interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
-            interfacelocal.setAddresses("10.100.1.4");
+            interfacelocal.setAddresses("10.100.1.4/24");
             interfacelocal.setDnsServers("8.8.8.8");
-            interfacelocal.setListenPort("24");
+            //interfacelocal.setListenPort("24");
             Config newConfig = new Config.Builder()
                     .setInterface(interfacelocal.resolve())
                     .addPeers(resolvedPeers)
@@ -332,9 +332,9 @@ public class TunnelListFragment extends BaseFragment {
             //2:封装interface
             Interfacelocal interfacelocal = new Interfacelocal();
             interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
-            interfacelocal.setAddresses("10.100.1.4");
+            interfacelocal.setAddresses("10.100.1.4/24");
             interfacelocal.setDnsServers("8.8.8.8");
-            interfacelocal.setListenPort("24");
+           // interfacelocal.setListenPort("24");
             Config newConfig = new Config.Builder()
                     .setInterface(interfacelocal.resolve())
                     .addPeers(resolvedPeers)
