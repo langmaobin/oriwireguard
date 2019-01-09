@@ -341,7 +341,19 @@ public class TunnelListFragment extends BaseFragment {
                     .build();
             manager = Application.getTunnelManager();
             tunnel = new Tunnel(manager, newConfig, "VPN_BJ", Tunnel.State.DOWN);
-            manager.setTunnelState(tunnel, Tunnel.State.UP);
+           // manager.setTunnelState(tunnel, Tunnel.State.UP);
+            tunnel.setState(Tunnel.State.UP).whenComplete((state, throwable) -> {
+                if (throwable == null)
+                    return;
+                final String error = ExceptionLoggers.unwrapMessage(throwable);
+                //final int messageResId = checked ? R.string.error_up : R.string.error_down;
+//                final String message = getContext().getString(messageResId, error);
+//                final View view = getView();
+//                if (view != null)
+//                    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+//                else
+//                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+            });
         } catch (Exception e) {
 
         }
