@@ -322,41 +322,51 @@ public class TunnelListFragment extends BaseFragment {
 
     public void onRequestCreateUp(@SuppressWarnings("unused") final View view) {
         try {
-            //1:封装peer
+
+//            Peerlocal peerlocal = new Peerlocal();
+//            peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
+//            peerlocal.setEndpoint("123.206.67.247:51820");
+//            peerlocal.setAllowedIps("0.0.0.0/0");
+//            Collection<Peer> resolvedPeers = new ArrayList<>();
+//            resolvedPeers.add(peerlocal.resolve());
+//            Interfacelocal interfacelocal = new Interfacelocal();
+//            interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
+//            interfacelocal.setAddresses("10.100.1.4/24");
+//            interfacelocal.setDnsServers("8.8.8.8");
+
             Peerlocal peerlocal = new Peerlocal();
             peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
             peerlocal.setEndpoint("123.206.67.247:51820");
             peerlocal.setAllowedIps("0.0.0.0/0");
             Collection<Peer> resolvedPeers = new ArrayList<>();
             resolvedPeers.add(peerlocal.resolve());
-            //2:封装interface
             Interfacelocal interfacelocal = new Interfacelocal();
             interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
-            interfacelocal.setAddresses("10.100.1.4/24");
+            interfacelocal.setAddresses("10.100.1.1/24");
             interfacelocal.setDnsServers("8.8.8.8");
-           // interfacelocal.setListenPort("24");
+
             Config newConfig = new Config.Builder()
                     .setInterface(interfacelocal.resolve())
                     .addPeers(resolvedPeers)
                     .build();
             manager = Application.getTunnelManager();
             tunnel = new Tunnel(manager, newConfig, "VPN_BJ", Tunnel.State.DOWN);
-           // manager.setTunnelState(tunnel, Tunnel.State.UP);
-            tunnel.setState(Tunnel.State.UP).whenComplete((state, throwable) -> {
-                if (throwable == null)
-                    return;
-                final String error = ExceptionLoggers.unwrapMessage(throwable);
-                //final int messageResId = checked ? R.string.error_up : R.string.error_down;
+            manager.setTunnelState(tunnel, Tunnel.State.UP);
+//            tunnel.setState(Tunnel.State.UP).whenComplete((state, throwable) -> {
+//                if (throwable == null)
+//                    return;
+//                final String error = ExceptionLoggers.unwrapMessage(throwable);
+//                final int messageResId = checked ? R.string.error_up : R.string.error_down;
 //                final String message = getContext().getString(messageResId, error);
 //                final View view = getView();
 //                if (view != null)
 //                    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
 //                else
 //                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-            });
-        } catch (Exception e) {
-
-        }
+//            });
+//        } catch (Exception e) {
+//
+//        }
 
         if (binding != null)
             binding.createMenu.collapse();
