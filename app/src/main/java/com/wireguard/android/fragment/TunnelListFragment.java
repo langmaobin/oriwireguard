@@ -364,9 +364,9 @@ public class TunnelListFragment extends BaseFragment {
 //                else
 //                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
 //            });
-//        } catch (Exception e) {
-//
-//        }
+        } catch (Exception e) {
+
+        }
 
         if (binding != null)
             binding.createMenu.collapse();
