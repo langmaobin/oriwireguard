@@ -323,27 +323,27 @@ public class TunnelListFragment extends BaseFragment {
     public void onRequestCreateUp(@SuppressWarnings("unused") final View view) {
         try {
 
-            Peerlocal peerlocal = new Peerlocal();
-            peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
-            peerlocal.setEndpoint("123.206.67.247:51820");
-            peerlocal.setAllowedIps("0.0.0.0/0");
-            Collection<Peer> resolvedPeers = new ArrayList<>();
-            resolvedPeers.add(peerlocal.resolve());
-            Interfacelocal interfacelocal = new Interfacelocal();
-            interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
-            interfacelocal.setAddresses("10.100.1.4/24");
-            interfacelocal.setDnsServers("8.8.8.8");
-
 //            Peerlocal peerlocal = new Peerlocal();
-//            peerlocal.setPublicKey("T71PLzNrF2L8det7wMBRLmp4fwin0SSr0HxBtkgM7bY=");
+//            peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
 //            peerlocal.setEndpoint("123.206.67.247:51820");
 //            peerlocal.setAllowedIps("0.0.0.0/0");
 //            Collection<Peer> resolvedPeers = new ArrayList<>();
 //            resolvedPeers.add(peerlocal.resolve());
 //            Interfacelocal interfacelocal = new Interfacelocal();
-//            interfacelocal.setPrivateKey("4CP6BrjgzaBD539HTN0WkfGgkkQrZxoZHcJZ5QywBXE=");
-//            interfacelocal.setAddresses("10.100.1.1/24");
+//            interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
+//            interfacelocal.setAddresses("10.100.1.4/24");
 //            interfacelocal.setDnsServers("8.8.8.8");
+
+            Peerlocal peerlocal = new Peerlocal();
+            peerlocal.setPublicKey("2yzSla7dVc7xkcZlIimSb4+4OlzTuMUdMpsMev5p6Hk=");
+            peerlocal.setEndpoint("123.206.67.247:51820");
+            peerlocal.setAllowedIps("0.0.0.0/0");
+            Collection<Peer> resolvedPeers = new ArrayList<>();
+            resolvedPeers.add(peerlocal.resolve());
+            Interfacelocal interfacelocal = new Interfacelocal();
+            interfacelocal.setPrivateKey("uxsUm6QGQj81kSOcxnsp8LA2csFxZaBb4U1ayOzDXj8=");
+            interfacelocal.setAddresses("10.100.1.12/24");
+            interfacelocal.setDnsServers("8.8.8.8");
 
             Config newConfig = new Config.Builder()
                     .setInterface(interfacelocal.resolve())
