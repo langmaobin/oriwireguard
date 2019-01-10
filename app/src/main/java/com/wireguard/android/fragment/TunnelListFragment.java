@@ -344,6 +344,7 @@ public class TunnelListFragment extends BaseFragment {
             interfacelocal.setPrivateKey("uxsUm6QGQj81kSOcxnsp8LA2csFxZaBb4U1ayOzDXj8=");
             interfacelocal.setAddresses("10.100.1.12/24");
             interfacelocal.setDnsServers("8.8.8.8");
+            //interfacelocal.setDnsServers("8.8.8.8");
 
             Config newConfig = new Config.Builder()
                     .setInterface(interfacelocal.resolve())
