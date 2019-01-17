@@ -335,14 +335,14 @@ public class TunnelListFragment extends BaseFragment {
 //            interfacelocal.setDnsServers("8.8.8.8");
 
             Peerlocal peerlocal = new Peerlocal();
-            peerlocal.setPublicKey("2yzSla7dVc7xkcZlIimSb4+4OlzTuMUdMpsMev5p6Hk=");
+            peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
             peerlocal.setEndpoint("123.206.67.247:51820");
             peerlocal.setAllowedIps("0.0.0.0/0");
             Collection<Peer> resolvedPeers = new ArrayList<>();
             resolvedPeers.add(peerlocal.resolve());
             Interfacelocal interfacelocal = new Interfacelocal();
-            interfacelocal.setPrivateKey("uxsUm6QGQj81kSOcxnsp8LA2csFxZaBb4U1ayOzDXj8=");
-            interfacelocal.setAddresses("10.100.1.12/24");
+            interfacelocal.setPrivateKey("wHV+30XK6Y2rZHrU3L77tGUB7VeJRONp+iy7hlrR/mQ=");
+            interfacelocal.setAddresses("10.100.1.101/24");
             interfacelocal.setDnsServers("8.8.8.8");
             //interfacelocal.setDnsServers("8.8.8.8");
 
