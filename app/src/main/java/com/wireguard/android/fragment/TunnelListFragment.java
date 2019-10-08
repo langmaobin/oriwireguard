@@ -294,15 +294,15 @@ public class TunnelListFragment extends BaseFragment {
         try {
             //1:封装peer
             Peerlocal peerlocal = new Peerlocal();
-            peerlocal.setPublicKey("RAg5S1r3VGqq+emlo5OwhHSLv5Zz0YUoDh17AfenlXo=");
-            peerlocal.setEndpoint("123.206.67.247:51820");
+            peerlocal.setPublicKey("3ZNBboe8EJ8PhAOp3V1if3S1FbCBMmlSXKAnIZVpj1c=");
+            peerlocal.setEndpoint("117.28.244.126:51319");
             peerlocal.setAllowedIps("0.0.0.0/0");
             Collection<Peer> resolvedPeers = new ArrayList<>();
             resolvedPeers.add(peerlocal.resolve());
             //2:封装interface
             Interfacelocal interfacelocal = new Interfacelocal();
-            interfacelocal.setPrivateKey("IBQRmUDMANH0f5gfWVvLa3GiU8YhKtwm5CwSu8l+RHs=");
-            interfacelocal.setAddresses("10.100.1.4/24");
+            interfacelocal.setPrivateKey("2IfLNI/TdQBzoZwUPMLlrUr2B6pWzgA4nIDVILBonG8=");
+            interfacelocal.setAddresses("10.102.144.60/20");
             interfacelocal.setDnsServers("8.8.8.8");
             //interfacelocal.setListenPort("24");
             Config newConfig = new Config.Builder()
